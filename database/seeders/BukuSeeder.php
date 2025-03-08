@@ -15,11 +15,12 @@ class BukuSeeder extends Seeder
     {
         //
         Buku::create([
-            'judul' => 'Naruto',
-            'pengarang' => 'Masashi Kishimoto',
-            'penerbit' => 'Shueisha',
-            'tahun_terbit' => 1997,
-            'stok' => 20
+            'judul_buku' => 'Naruto',
+            'pengarang_buku' => 'Masashi Kishimoto',
+            'penerbit_buku' => 'Shueisha',
+            'tahun_terbit_buku' => 1997,
+            'stok_buku' => 20,
+            'id_kategori' => 1
         ]);
     }
 }

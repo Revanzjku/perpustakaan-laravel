@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class PerpustakaanController extends Controller
@@ -12,6 +14,9 @@ class PerpustakaanController extends Controller
     public function index()
     {
         //
+        $perpustakaan = Buku::with('kategori')->get();
+
+        return view('perpustakaan.index', compact('perpustakaan'));
     }
 
     /**
@@ -20,6 +25,9 @@ class PerpustakaanController extends Controller
     public function create()
     {
         //
+        $kategori = Kategori::all();
+
+        return view('perpustakaan.tambah', compact('kategori'));
     }
 
     /**
@@ -28,14 +36,9 @@ class PerpustakaanController extends Controller
     public function store(Request $request)
     {
         //
-    }
+        Buku::create($request->all());
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        return redirect('/perpustakaan');
     }
 
     /**

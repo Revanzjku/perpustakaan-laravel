@@ -15,8 +15,7 @@ class KategoriSeeder extends Seeder
     {
         //
         Kategori::create([
-            'nama_kategori' => 'manga',
-            'id_buku' => 2
+            'nama_kategori' => 'Manga',
         ]);
     }
 }
