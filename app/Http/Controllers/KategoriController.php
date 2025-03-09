@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Buku;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 
-class PerpustakaanController extends Controller
+class KategoriController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +13,9 @@ class PerpustakaanController extends Controller
     public function index()
     {
         //
-        $perpustakaan = Buku::with('kategori')->get();
+        $kategori = Kategori::paginate(3);
 
-        return view('buku.index', compact('perpustakaan'));
+        return view('kategori.index', compact('kategori'));
     }
 
     /**
@@ -25,9 +24,7 @@ class PerpustakaanController extends Controller
     public function create()
     {
         //
-        $kategori = Kategori::all();
-
-        return view('buku.tambah', compact('kategori'));
+        return view('kategori.tambah');
     }
 
     /**
@@ -36,9 +33,9 @@ class PerpustakaanController extends Controller
     public function store(Request $request)
     {
         //
-        Buku::create($request->all());
+        Kategori::create($request->all());
 
-        return redirect('/perpustakaan');
+        return redirect('/kategori');
     }
 
     /**
@@ -47,10 +44,10 @@ class PerpustakaanController extends Controller
     public function edit($id)
     {
         //
-        $perpustakaan = Buku::findOrFail($id);
-        $kategori = Kategori::all();
+        $kategori = Kategori::findOrFail($id);
+        $kategori->all();
 
-        return view('buku.edit', compact('perpustakaan', 'kategori'));
+        return view('kategori.edit', compact('kategori'));
     }
 
     /**
@@ -59,10 +56,10 @@ class PerpustakaanController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $perpustakaan = Buku::findOrFail($id);
-        $perpustakaan->update($request->all());
+        $kategori = Kategori::findOrFail($id);
+        $kategori->update($request->all());
 
-        return redirect('/perpustakaan');
+        return redirect('/kategori');
     }
 
     /**
@@ -71,9 +68,9 @@ class PerpustakaanController extends Controller
     public function destroy($id)
     {
         //
-        $perpustakaan = Buku::findOrFail($id);
-        $perpustakaan->delete();
+        $kategori = Kategori::findOrFail($id);
+        $kategori->delete();
 
-        return redirect('/perpustakaan');
+        return redirect('/kategori');
     }
 }
