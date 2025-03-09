@@ -33,7 +33,7 @@
                     <td>{{$buku->kategori->nama_kategori}}</td>
                     <td>
                         <a href="/perpustakaan/edit/{{$buku->id}}">Edit Buku</a>
-                        <a href="/perpustakaan/hapus/{{$buku->id}}">Hapus Buku</a>
+                        <a href="/perpustakaan/hapus/{{$buku->id}}" onclick="return confirm('Yakin?')">Hapus Buku</a>
                     </td>
                 </tr>
             @endforeach

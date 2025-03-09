@@ -44,24 +44,36 @@ class PerpustakaanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
         //
+        $perpustakaan = Buku::findOrFail($id);
+        $kategori = Kategori::all();
+
+        return view('perpustakaan.edit', compact('perpustakaan', 'kategori'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         //
+        $perpustakaan = Buku::findOrFail($id);
+        $perpustakaan->update($request->all());
+
+        return redirect('/perpustakaan');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         //
+        $perpustakaan = Buku::findOrFail($id);
+        $perpustakaan->delete();
+
+        return redirect('/perpustakaan');
     }
 }

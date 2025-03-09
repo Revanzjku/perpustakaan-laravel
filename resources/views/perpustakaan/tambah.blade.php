@@ -27,6 +27,7 @@
         <input type="number" name="stok_buku" id="stok">
         <label for="kategori">Pilih Kategori</label>
         <select name="id_kategori" id="kategori">
+            <option value="Tidak ada kategori">Pilih Kategori</option>
             @foreach($kategori as $nama)
                 <option value="{{$nama->id}}">{{$nama->nama_kategori}}</option>
             @endforeach
