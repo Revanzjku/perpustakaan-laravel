@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Kategori</title>
+    <title>Dashboard Admin</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">Admin Perpustakaan</a>
+        <a class="navbar-brand" href="#">Admin Perpustakaan</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="/">Dashboard</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/perpustakaan">Kelola Buku</a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="/kategori">Kelola Kategori</a>
                 </li>
             </ul>
@@ -28,19 +28,33 @@
     </nav>
 
     <div class="container mt-4">
-        <h2>Tambah Kategori</h2>
-        <form action="/kategori/tambah/store" method="post">
-            @csrf
-            <div class="form-group">
-                <label for="kategori">Nama Kategori :</label>
-                <input type="text" name="nama_kategori" id="kategori" class="form-control">
+        <h2>Dashboard Admin</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-header">Total Buku</div>
+                    <div class="card-body">
+                        <h5 class="card-title">150 Buku</h5>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="deskripsi">Deskripsi Kategori :</label>
-                <textarea name="deskripsi" id="deskripsi" class="form-control" rows="5"></textarea>
+            <div class="col-md-4">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-header">Total Kategori</div>
+                    <div class="card-body">
+                        <h5 class="card-title">10 Kategori</h5>
+                    </div>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Simpan</button>
-        </form>
+            <div class="col-md-4">
+                <div class="card text-white bg-warning mb-3">
+                    <div class="card-header">Total Stok</div>
+                    <div class="card-body">
+                        <h5 class="card-title">500 Stok</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

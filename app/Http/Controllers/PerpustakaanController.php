@@ -14,7 +14,7 @@ class PerpustakaanController extends Controller
     public function index()
     {
         //
-        $perpustakaan = Buku::with('kategori')->get();
+        $perpustakaan = Buku::with('kategori')->paginate(10);
 
         return view('buku.index', compact('perpustakaan'));
     }
