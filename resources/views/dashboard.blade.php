@@ -7,7 +7,7 @@
         <div class="card text-white bg-primary mb-3">
             <div class="card-header">Total Buku</div>
             <div class="card-body">
-                <h5 class="card-title">150 Buku</h5>
+                <h5 class="card-title">{{$totalBuku}} Buku</h5>
                 <p class="card-text">Jumlah buku yang tersedia di perpustakaan.</p>
             </div>
         </div>
@@ -16,7 +16,7 @@
         <div class="card text-white bg-success mb-3">
             <div class="card-header">Total Kategori</div>
             <div class="card-body">
-                <h5 class="card-title">10 Kategori</h5>
+                <h5 class="card-title">{{$totalKategori}} Kategori</h5>
                 <p class="card-text">Jumlah kategori buku yang tersedia.</p>
             </div>
         </div>
@@ -25,7 +25,7 @@
         <div class="card text-white bg-warning mb-3">
             <div class="card-header">Total Stok</div>
             <div class="card-body">
-                <h5 class="card-title">500 Stok</h5>
+                <h5 class="card-title">{{$totalStokBuku}} Stok</h5>
                 <p class="card-text">Total stok buku yang tersedia.</p>
             </div>
         </div>
@@ -40,9 +40,9 @@
             </div>
             <div class="card-body">
                 <ul class="list-group">
-                    <li class="list-group-item">Buku baru "Belajar Pemrograman" telah ditambahkan.</li>
-                    <li class="list-group-item">Kategori "Teknologi" telah diperbarui.</li>
-                    <li class="list-group-item">Stok buku "Matematika Dasar" telah ditambah.</li>
+                    @foreach($aktivitasTerbaru as $aktivitas)
+                        <li class="list-group-item">{{$aktivitas->deskripsi}}</li>
+                    @endforeach
                 </ul>
             </div>
         </div>

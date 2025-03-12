@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aktivitas;
 use App\Models\Buku;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
@@ -36,7 +37,11 @@ class PerpustakaanController extends Controller
     public function store(Request $request)
     {
         //
-        Buku::create($request->all());
+        $buku = Buku::create($request->all());
+
+        Aktivitas::create([
+            'deskripsi' => "Buku baru $buku->judul_buku telah ditambahkan."
+        ]);
 
         return redirect('/perpustakaan');
     }
@@ -62,6 +67,10 @@ class PerpustakaanController extends Controller
         $perpustakaan = Buku::findOrFail($id);
         $perpustakaan->update($request->all());
 
+        Aktivitas::create([
+            'deskripsi' => "Stok buku $perpustakaan->judul_buku telah ditambah."
+        ]);
+
         return redirect('/perpustakaan');
     }
 
@@ -73,6 +82,10 @@ class PerpustakaanController extends Controller
         //
         $perpustakaan = Buku::findOrFail($id);
         $perpustakaan->delete();
+
+        Aktivitas::create([
+            'deskripsi' => "Buku $perpustakaan->judul_buku telah dihapus."
+        ]);
 
         return redirect('/perpustakaan');
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aktivitas;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class KategoriController extends Controller
     public function index()
     {
         //
-        $kategori = Kategori::paginate(3);
+        $kategori = Kategori::paginate(5);
 
         return view('kategori.index', compact('kategori'));
     }
@@ -33,7 +34,11 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         //
-        Kategori::create($request->all());
+        $kategori = Kategori::create($request->all());
+
+        Aktivitas::create([
+            'deskripsi' => "Kategori $kategori->nama_kategori telah ditambah."
+        ]);
 
         return redirect('/kategori');
     }
@@ -70,6 +75,10 @@ class KategoriController extends Controller
         //
         $kategori = Kategori::findOrFail($id);
         $kategori->delete();
+
+        Aktivitas::create([
+            'deskripsi' => "Kategori $kategori->nama_kategori telah dihapus."
+        ]);
 
         return redirect('/kategori');
     }

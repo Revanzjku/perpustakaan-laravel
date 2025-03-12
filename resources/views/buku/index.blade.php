@@ -14,6 +14,7 @@
     <table class="table table-striped table-hover border rounded shadow-sm">
         <thead class="table-dark text-center">
             <tr>
+                <th>No. Urut</th>
                 <th>Judul Buku</th>
                 <th>Pengarang</th>
                 <th>Penerbit</th>
@@ -26,6 +27,7 @@
         <tbody class="text-center">
             @foreach($perpustakaan as $buku)
                 <tr>
+                    <td>{{$perpustakaan->firstItem() + $loop->index}}</td>
                     <td>{{$buku->judul_buku}}</td>
                     <td>{{$buku->pengarang_buku}}</td>
                     <td>{{$buku->penerbit_buku}}</td>

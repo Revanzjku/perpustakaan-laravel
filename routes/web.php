@@ -1,12 +1,11 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PerpustakaanController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('dashboard');
-});
+Route::get('/', [DashboardController::class, 'index']);
 
 Route::get('/perpustakaan', [PerpustakaanController::class, 'index']);
 Route::get('/perpustakaan/tambah', [PerpustakaanController::class, 'create']);
