@@ -64,6 +64,10 @@ class KategoriController extends Controller
         $kategori = Kategori::findOrFail($id);
         $kategori->update($request->all());
 
+        Aktivitas::create([
+            'deskripsi' => "Data kategori $kategori->nama_kategori telah diubah."
+        ]);
+
         return redirect('/kategori');
     }
 

@@ -68,7 +68,7 @@ class PerpustakaanController extends Controller
         $perpustakaan->update($request->all());
 
         Aktivitas::create([
-            'deskripsi' => "Stok buku $perpustakaan->judul_buku telah ditambah."
+            'deskripsi' => "Data buku $perpustakaan->judul_buku telah diubah."
         ]);
 
         return redirect('/perpustakaan');
