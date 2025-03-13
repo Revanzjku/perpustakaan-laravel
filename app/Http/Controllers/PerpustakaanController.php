@@ -65,10 +65,11 @@ class PerpustakaanController extends Controller
     {
         //
         $perpustakaan = Buku::findOrFail($id);
+        $namaBuku = $perpustakaan->judul_buku;
         $perpustakaan->update($request->all());
 
         Aktivitas::create([
-            'deskripsi' => "Data buku $perpustakaan->judul_buku telah diubah."
+            'deskripsi' => "Data buku $namaBuku telah diubah."
         ]);
 
         return redirect('/perpustakaan');

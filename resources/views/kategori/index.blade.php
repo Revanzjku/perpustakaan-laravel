@@ -8,7 +8,7 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-3">
         <h2 class="text-primary">Kelola Kategori</h2>
-        <a href="/kategori/tambah" class="btn btn-primary">Tambah Kategori</a>
+        <a href="{{route('kategori.create')}}" class="btn btn-primary">Tambah Kategori</a>
     </div>
 
     <div class="table-responsive">
@@ -28,8 +28,8 @@
                         <td>{{$list->nama_kategori}}</td>
                         <td class="text-truncate" style="max-width: 300px;">{{$list->deskripsi}}</td>
                         <td>
-                            <a href="/kategori/edit/{{$list->id}}" class="btn btn-warning btn-sm">Edit</a>
-                            <a href="/kategori/hapus/{{$list->id}}" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</a>
+                            <a href="{{route('kategori.edit', $list->id)}}" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="{{route('kategori.destroy', $list->id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</a>
                         </td>
                     </tr>
                 @endforeach

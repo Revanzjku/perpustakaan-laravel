@@ -2,7 +2,7 @@
 @section('title', 'Edit Data Buku')
 @section('content')
 <h2>Perbarui Data Buku</h2>
-<form action="/perpustakaan/update/{{$perpustakaan->id}}" method="post">
+<form action="{{route('buku.update', $perpustakaan->id)}}" method="post">
     @csrf
     @method('PUT')
     <div class="form-group">

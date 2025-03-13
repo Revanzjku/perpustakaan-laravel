@@ -8,7 +8,7 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h2 class="text-primary">Daftar Buku</h2>
-    <a href="/perpustakaan/tambah" class="btn btn-primary">Tambah Buku</a>
+    <a href="{{route('buku.create')}}" class="btn btn-primary">Tambah Buku</a>
 </div>
 <div class="table-responsive">
     <table class="table table-striped table-hover border rounded shadow-sm">
@@ -35,8 +35,8 @@
                     <td>{{$buku->stok_buku}}</td>
                     <td>{{$buku->kategori->nama_kategori}}</td>
                     <td>
-                        <a href="/perpustakaan/edit/{{$buku->id}}" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="/perpustakaan/hapus/{{$buku->id}}" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</a>
+                        <a href="{{route('buku.edit', $buku->id)}}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{{route('buku.destroy', $buku->id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</a>
                     </td>
                 </tr>
             @endforeach

@@ -22,20 +22,20 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">Admin Perpustakaan</a>
+        <a class="navbar-brand" href="{{route('dashboard')}}">Admin Perpustakaan</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
-                    <a class="nav-link" href="/">Dashboard</a>
+                <li class="nav-item {{ Route::is('dashboard') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{route('dashboard')}}">Dashboard</a>
                 </li>
-                <li class="nav-item {{ request()->is('perpustakaan*') ? 'active' : '' }}">
-                    <a class="nav-link" href="/perpustakaan">Kelola Buku</a>
+                <li class="nav-item {{ Route::is('buku.index') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{route('buku.index')}}">Kelola Buku</a>
                 </li>
-                <li class="nav-item {{ request()->is('kategori*') ? 'active' : '' }}">
-                    <a class="nav-link" href="/kategori">Kelola Kategori</a>
+                <li class="nav-item {{ Route::is('kategori.index') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{route('kategori.index')}}">Kelola Kategori</a>
                 </li>
             </ul>
         </div>

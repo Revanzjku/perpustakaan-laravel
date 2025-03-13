@@ -2,7 +2,7 @@
 @section('title', 'Tambah Kategori')
 @section('content')
 <h2>Tambah Kategori</h2>
-<form action="/kategori/tambah/store" method="post">
+<form action="{{route('kategori.store')}}" method="post">
     @csrf
     <div class="form-group">
         <label for="kategori">Nama Kategori :</label>
