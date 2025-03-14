@@ -7,32 +7,50 @@
     @method('PUT')
     <div class="form-group">
         <label for="judul">Judul Buku :</label>
-        <input type="text" name="judul_buku" id="judul" class="form-control" value="{{$perpustakaan->judul_buku}}">
+        <input type="text" name="judul_buku" id="judul" class="form-control" value="{{ old('judul_buku', $perpustakaan->judul_buku) }}">
+        @error('judul_buku')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
     </div>
     <div class="form-group">
         <label for="pengarang">Pengarang Buku :</label>
-        <input type="text" name="pengarang_buku" id="pengarang" class="form-control" value="{{$perpustakaan->pengarang_buku}}">
+        <input type="text" name="pengarang_buku" id="pengarang" class="form-control" value="{{ old('pengarang_buku', $perpustakaan->pengarang_buku) }}">
+        @error('pengarang_buku')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
     </div>
     <div class="form-group">
         <label for="penerbit">Penerbit Buku :</label>
-        <input type="text" name="penerbit_buku" id="penerbit" class="form-control" value="{{$perpustakaan->penerbit_buku}}">
+        <input type="text" name="penerbit_buku" id="penerbit" class="form-control" value="{{ old('penerbit_buku', $perpustakaan->penerbit_buku) }}">
+        @error('penerbit_buku')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
     </div>
     <div class="form-group">
         <label for="tahun_terbit">Tahun Terbit Buku :</label>
-        <input type="number" name="tahun_terbit_buku" id="tahun_terbit" class="form-control" value="{{$perpustakaan->tahun_terbit_buku}}">
+        <input type="number" name="tahun_terbit_buku" id="tahun_terbit" class="form-control" value="{{ old('tahun_terbit_buku', $perpustakaan->tahun_terbit_buku) }}">
+        @error('tahun_terbit_buku')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
     </div>
     <div class="form-group">
         <label for="stok">Stok Buku :</label>
-        <input type="number" name="stok_buku" id="stok" class="form-control" value="{{$perpustakaan->stok_buku}}">
+        <input type="number" name="stok_buku" id="stok" class="form-control" value="{{ old('stok_buku', $perpustakaan->stok_buku) }}">
+        @error('stok_buku')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
     </div>
     <div class="form-group">
         <label for="kategori">Pilih Kategori</label>
         <select name="id_kategori" id="kategori" class="form-control">
-            <option value="Kosong">Pilih Kategori</option>
+            <option value="">Pilih Kategori</option>
             @foreach($kategori as $nama)
-                <option value="{{$nama->id}}" {{$perpustakaan->id_kategori == $nama->id ? 'selected' : ''}}>{{$nama->nama_kategori}}</option>
+                <option value="{{$nama->id}}" {{ old('id_kategori', $perpustakaan->id_kategori) == $nama->id ? 'selected' : '' }}>{{$nama->nama_kategori}}</option>
             @endforeach
         </select>
+        @error('id_kategori')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
     </div>
     <button type="submit" class="btn btn-primary">Simpan</button>
 </form>

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BukuRequest;
 use App\Models\Aktivitas;
 use App\Models\Buku;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 
-class PerpustakaanController extends Controller
+class BukuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +35,7 @@ class PerpustakaanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BukuRequest $request)
     {
         //
         $buku = Buku::create($request->all());
@@ -43,7 +44,7 @@ class PerpustakaanController extends Controller
             'deskripsi' => "Buku baru $buku->judul_buku telah ditambahkan."
         ]);
 
-        return redirect('/perpustakaan');
+        return redirect('/perpustakaan')->with('success', 'Data buku berhasil ditambahkan.');
     }
 
     /**
@@ -61,7 +62,7 @@ class PerpustakaanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(BukuRequest $request, $id)
     {
         //
         $perpustakaan = Buku::findOrFail($id);
@@ -72,7 +73,7 @@ class PerpustakaanController extends Controller
             'deskripsi' => "Data buku $namaBuku telah diubah."
         ]);
 
-        return redirect('/perpustakaan');
+        return redirect('/perpustakaan')->with('success', 'Data buku berhasil diubah.');
     }
 
     /**
@@ -88,6 +89,6 @@ class PerpustakaanController extends Controller
             'deskripsi' => "Buku $perpustakaan->judul_buku telah dihapus."
         ]);
 
-        return redirect('/perpustakaan');
+        return redirect('/perpustakaan')->with('success', 'Data buku berhasil dihapus.');
     }
 }

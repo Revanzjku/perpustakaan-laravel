@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\KategoriRequest;
 use App\Models\Aktivitas;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
@@ -31,7 +32,7 @@ class KategoriController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(KategoriRequest $request)
     {
         //
         $kategori = Kategori::create($request->all());
@@ -40,7 +41,7 @@ class KategoriController extends Controller
             'deskripsi' => "Kategori $kategori->nama_kategori telah ditambah."
         ]);
 
-        return redirect('/kategori');
+        return redirect('/kategori')->with('success', 'Data kategori berhasil ditambahkan.');
     }
 
     /**
@@ -58,7 +59,7 @@ class KategoriController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(KategoriRequest $request, $id)
     {
         //
         $kategori = Kategori::findOrFail($id);
@@ -69,7 +70,7 @@ class KategoriController extends Controller
             'deskripsi' => "Data kategori $namaKategori telah diubah."
         ]);
 
-        return redirect('/kategori');
+        return redirect('/kategori')->with('success', 'Data kategori berhasil diubah.');
     }
 
     /**
@@ -85,6 +86,6 @@ class KategoriController extends Controller
             'deskripsi' => "Kategori $kategori->nama_kategori telah dihapus."
         ]);
 
-        return redirect('/kategori');
+        return redirect('/kategori')->with('success', 'Data kategori berhasil dihapus.');
     }
 }

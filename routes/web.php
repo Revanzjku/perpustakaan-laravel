@@ -1,18 +1,18 @@
 <?php
 
+use App\Http\Controllers\BukuController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\PerpustakaanController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/perpustakaan', [PerpustakaanController::class, 'index'])->name('buku.index');
-Route::get('/perpustakaan/tambah', [PerpustakaanController::class, 'create'])->name('buku.create');
-Route::post('/perpustakaan/tambah/store', [PerpustakaanController::class, 'store'])->name('buku.store');
-Route::get('/perpustakaan/edit/{id}', [PerpustakaanController::class, 'edit'])->name('buku.edit');
-Route::put('/perpustakaan/update/{id}', [PerpustakaanController::class, 'update'])->name('buku.update');
-Route::get('/perpustakaan/hapus/{id}', [PerpustakaanController::class, 'destroy'])->name('buku.destroy');
+Route::get('/perpustakaan', [BukuController::class, 'index'])->name('buku.index');
+Route::get('/perpustakaan/tambah', [BukuController::class, 'create'])->name('buku.create');
+Route::post('/perpustakaan/tambah/store', [BukuController::class, 'store'])->name('buku.store');
+Route::get('/perpustakaan/edit/{id}', [BukuController::class, 'edit'])->name('buku.edit');
+Route::put('/perpustakaan/update/{id}', [BukuController::class, 'update'])->name('buku.update');
+Route::get('/perpustakaan/hapus/{id}', [BukuController::class, 'destroy'])->name('buku.destroy');
 
 // Kategori Route
 Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index');

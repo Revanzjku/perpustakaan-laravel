@@ -10,6 +10,11 @@
     <h2 class="text-primary">Daftar Buku</h2>
     <a href="{{route('buku.create')}}" class="btn btn-primary">Tambah Buku</a>
 </div>
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 <div class="table-responsive">
     <table class="table table-striped table-hover border rounded shadow-sm">
         <thead class="table-dark text-center">
