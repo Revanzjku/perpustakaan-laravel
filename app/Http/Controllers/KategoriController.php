@@ -41,7 +41,7 @@ class KategoriController extends Controller
             'deskripsi' => "Kategori $kategori->nama_kategori telah ditambah."
         ]);
 
-        return redirect('/kategori')->with('success', 'Data kategori berhasil ditambahkan.');
+        return redirect()->route('kategori.index')->with('success', 'Data kategori berhasil ditambahkan.');
     }
 
     /**
@@ -70,7 +70,7 @@ class KategoriController extends Controller
             'deskripsi' => "Data kategori $namaKategori telah diubah."
         ]);
 
-        return redirect('/kategori')->with('success', 'Data kategori berhasil diubah.');
+        return redirect()->route('kategori.index')->with('success', 'Data kategori berhasil diubah.');
     }
 
     /**
@@ -86,6 +86,6 @@ class KategoriController extends Controller
             'deskripsi' => "Kategori $kategori->nama_kategori telah dihapus."
         ]);
 
-        return redirect('/kategori')->with('success', 'Data kategori berhasil dihapus.');
+        return redirect()->route('kategori.index')->with('success', 'Data kategori berhasil dihapus.');
     }
 }

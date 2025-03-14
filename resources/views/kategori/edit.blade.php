@@ -2,7 +2,7 @@
 @section('title', 'Edit Data Kategori')
 @section('content')
 <h2>Perbarui Kategori</h2>
-<form action="{{route('kategori.update', $kategori->id)}}" method="post">
+<form action="{{route('kategori.update', $kategori->id)}}" method="post" id="kategoriForm">
     @csrf
     @method('PUT')
     <div class="form-group">

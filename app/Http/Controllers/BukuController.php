@@ -44,7 +44,7 @@ class BukuController extends Controller
             'deskripsi' => "Buku baru $buku->judul_buku telah ditambahkan."
         ]);
 
-        return redirect('/perpustakaan')->with('success', 'Data buku berhasil ditambahkan.');
+        return redirect()->route('buku.index')->with('success', 'Data buku berhasil ditambahkan.');
     }
 
     /**
@@ -73,7 +73,7 @@ class BukuController extends Controller
             'deskripsi' => "Data buku $namaBuku telah diubah."
         ]);
 
-        return redirect('/perpustakaan')->with('success', 'Data buku berhasil diubah.');
+        return redirect()->route('buku.index')->with('success', 'Data buku berhasil diubah.');
     }
 
     /**
@@ -89,6 +89,6 @@ class BukuController extends Controller
             'deskripsi' => "Buku $perpustakaan->judul_buku telah dihapus."
         ]);
 
-        return redirect('/perpustakaan')->with('success', 'Data buku berhasil dihapus.');
+        return redirect()->route('buku.index')->with('success', 'Data buku berhasil dihapus.');
     }
 }

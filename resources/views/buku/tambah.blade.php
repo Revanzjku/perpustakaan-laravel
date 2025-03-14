@@ -2,7 +2,7 @@
 @section('title', 'Tambah Buku')
 @section('content')
 <h2>Tambah Buku</h2>
-<form action="{{route('buku.store')}}" method="post">
+<form action="{{route('buku.store')}}" method="post" id="bukuForm">
     @csrf
     <div class="form-group">
         <label for="judul">Judul Buku :</label>
