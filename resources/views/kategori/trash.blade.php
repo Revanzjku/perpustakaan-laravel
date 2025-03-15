@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Kelola Kategori')
+@section('title', 'Kategori Terhapus')
 <style>
     thead tr {
         pointer-events: none;
@@ -7,17 +7,9 @@
 </style>
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2 class="text-primary">Kelola Kategori</h2>
-    <div>
-        <a href="{{route('kategori.create')}}" class="btn btn-primary">Tambah Kategori</a>
-        <a href="{{route('kategori.trash')}}" class="btn btn-secondary">Lihat Kategori Dihapus</a>
-    </div>
+    <h2 class="text-primary">Kategori Dihapus</h2>
+    <a href="{{route('kategori.index')}}" class="btn btn-primary">Kembali</a>
 </div>
-@if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
 <div class="table-responsive">
     <table class="table table-bordered border rounded table-hover shadow-sm">
         <thead class="table-dark text-center">
@@ -35,8 +27,12 @@
                     <td>{{$list->nama_kategori}}</td>
                     <td class="text-truncate" style="max-width: 300px;">{{$list->deskripsi}}</td>
                     <td>
-                        <a href="{{route('kategori.edit', $list->id)}}" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="{{route('kategori.destroy', $list->id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</a>
+                        <form action="{{route('kategori.forceDelete', $list->id)}}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus secara permanen?')">Hapus Permanen</button>
+                        </form>
+                        <a href="{{route('kategori.restore', $list->id)}}" class="btn btn-success btn-sm">Restore</a>
                     </td>
                 </tr>
             @endforeach

@@ -91,4 +91,27 @@ class BukuController extends Controller
 
         return redirect()->route('buku.index')->with('success', 'Data buku berhasil dihapus.');
     }
+
+    public function trash()
+    {
+        $perpustakaan = Buku::onlyTrashed()->paginate(10);
+
+        return view('buku.trash', compact('perpustakaan'));
+    }
+
+    public function restore($id)
+    {
+        $buku = Buku::withTrashed()->findOrFail($id);
+        $buku->restore();
+
+        return redirect()->route('buku.index')->with('success', 'Buku berhasil dikembalikan.');
+    }
+
+    public function forceDelete($id)
+    {
+        $buku = Buku::withTrashed()->findOrFail($id);
+        $buku->forceDelete();
+
+        return redirect()->route('buku.index')->with('success', 'Buku berhasil dihapus secara permanen.');
+    }
 }

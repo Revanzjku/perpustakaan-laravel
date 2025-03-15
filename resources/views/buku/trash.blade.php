@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Kelola Buku')
+@section('title', 'Buku Dihapus')
 <style>
     thead tr {
         pointer-events: none;
@@ -7,17 +7,9 @@
 </style>
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2 class="text-primary">Daftar Buku</h2>
-    <div>
-        <a href="{{route('buku.create')}}" class="btn btn-primary">Tambah Buku</a>
-        <a href="{{route('buku.trash')}}" class="btn btn-secondary">Lihat Buku Dihapus</a>
-    </div>
+    <h2 class="text-primary">Buku Dihapus</h2>
+    <a href="{{route('buku.index')}}" class="btn btn-primary">Kembali ke Daftar Buku</a>
 </div>
-@if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
 <div class="table-responsive">
     <table class="table table-striped table-hover border rounded shadow-sm">
         <thead class="table-dark text-center">
@@ -43,8 +35,12 @@
                     <td>{{$buku->stok_buku}}</td>
                     <td>{{$buku->kategori->nama_kategori}}</td>
                     <td>
-                        <a href="{{route('buku.edit', $buku->id)}}" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="{{route('buku.destroy', $buku->id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</a>
+                        <form action="{{route('buku.forceDelete', $buku->id)}}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus secara permanen?')">Hapus Permanen</button>
+                        </form>
+                        <a href="{{route('buku.restore', $buku->id)}}" class="btn btn-success btn-sm">Restore</a>
                     </td>
                 </tr>
             @endforeach
