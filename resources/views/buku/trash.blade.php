@@ -15,6 +15,7 @@
         <thead class="table-dark text-center">
             <tr>
                 <th>No. Urut</th>
+                <th>Cover</th>
                 <th>Judul Buku</th>
                 <th>Pengarang</th>
                 <th>Penerbit</th>
@@ -28,6 +29,13 @@
             @foreach($perpustakaan as $buku)
                 <tr>
                     <td>{{$perpustakaan->firstItem() + $loop->index}}</td>
+                    <td>
+                        @if($buku->cover)
+                            <img src="{{ asset('images/'. $buku->cover) }}" alt="Gambar Buku" width="50">
+                        @else
+                            <img src="{{ asset('images/no-image.jpg') }}" alt="No Image" width="50">
+                        @endif
+                    </td>
                     <td>{{$buku->judul_buku}}</td>
                     <td>{{$buku->pengarang_buku}}</td>
                     <td>{{$buku->penerbit_buku}}</td>

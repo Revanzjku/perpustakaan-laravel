@@ -2,8 +2,15 @@
 @section('title', 'Tambah Buku')
 @section('content')
 <h2>Tambah Buku</h2>
-<form action="{{route('buku.store')}}" method="post" id="bukuForm">
+<form action="{{route('buku.store')}}" method="post" id="bukuForm" enctype="multipart/form-data">
     @csrf
+    <div class="form-group">
+        <label for="cover">Cover Buku :</label>
+        <input type="file" name="cover" id="cover" class="form-control">
+        @error('cover')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
     <div class="form-group">
         <label for="judul">Judul Buku :</label>
         <input type="text" name="judul_buku" id="judul" class="form-control" value="{{old('judul_buku')}}">

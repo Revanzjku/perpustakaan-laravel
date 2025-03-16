@@ -9,7 +9,7 @@ class Buku extends Model
 {
     use SoftDeletes;
     protected $table = 'buku';
-    protected $fillable = ['judul_buku', 'pengarang_buku', 'penerbit_buku', 'tahun_terbit_buku', 'stok_buku', 'id_kategori'];
+    protected $fillable = ['cover', 'judul_buku', 'pengarang_buku', 'penerbit_buku', 'tahun_terbit_buku', 'stok_buku', 'id_kategori'];
 
     public function kategori() {
         return $this->belongsTo(Kategori::class, 'id_kategori', 'id');

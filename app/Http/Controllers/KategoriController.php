@@ -83,10 +83,10 @@ class KategoriController extends Controller
         $kategori->delete();
 
         Aktivitas::create([
-            'deskripsi' => "Kategori $kategori->nama_kategori telah dihapus."
+            'deskripsi' => "Kategori $kategori->nama_kategori dimasukkan ke tempat sampah."
         ]);
 
-        return redirect()->route('kategori.index')->with('success', 'Data kategori berhasil dihapus.');
+        return redirect()->route('kategori.index')->with('success', 'Data kategori berhasil dihapus, masuk ke tempat sampah.');
     }
 
     public function trash()
@@ -101,6 +101,10 @@ class KategoriController extends Controller
         $kategori = Kategori::withTrashed()->findOrFail($id);
         $kategori->restore();
 
+        Aktivitas::create([
+            'deskripsi' => "Kategori $kategori->nama_kategori telah dikembalikan."
+        ]);
+
         return redirect()->route('kategori.index')->with('success', 'Kategori berhasil dikembalikan.');
     }
 
@@ -108,6 +112,10 @@ class KategoriController extends Controller
     {
         $kategori = Kategori::withTrashed()->findOrFail($id);
         $kategori->forceDelete();
+
+        Aktivitas::create([
+            'deskripsi' => "Kategori $kategori->nama_kategori telah dihapus permanen."
+        ]);
 
         return redirect()->route('kategori.index')->with('success', 'Kategori berhasil dihapus secara permanen.');
     }

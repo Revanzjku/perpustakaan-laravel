@@ -2,6 +2,10 @@ $(document).ready(function() {
     // Validasi untuk form buku
     $("#bukuForm").validate({
         rules: {
+            cover: {
+                extension: "jpg|jpeg|png|gif|svg",
+                max: 10000
+            },
             judul_buku: {
                 required: true,
                 maxlength: 255
@@ -30,6 +34,10 @@ $(document).ready(function() {
             }
         },
         messages: {
+            cover: {
+                extension: "Cover buku harus berupa file dengan ekstensi jpg, jpeg, png, gif, atau svg.",
+                max: "Ukuran file cover buku tidak boleh lebih dari 10 MB."
+            },
             judul_buku: {
                 required: "Judul buku wajib diisi.",
                 maxlength: "Judul buku tidak boleh lebih dari 255 karakter."

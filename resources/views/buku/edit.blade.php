@@ -2,9 +2,21 @@
 @section('title', 'Edit Data Buku')
 @section('content')
 <h2>Perbarui Data Buku</h2>
-<form action="{{route('buku.update', $perpustakaan->id)}}" method="post" id="bukuForm">
+<form action="{{route('buku.update', $perpustakaan->id)}}" method="post" id="bukuForm" enctype="multipart/form-data">
     @csrf
     @method('PUT')
+    <div class="form-group">
+        <label for="cover">Cover Buku :</label>
+        <input type="file" name="cover" id="cover" class="form-control">
+        @error('cover')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+        @if($perpustakaan->cover)
+            <img src="{{ asset('images/'. $perpustakaan->cover) }}" alt="Gambar Buku" width="50">
+        @else
+            <img src="{{ asset('images/no-image.jpg') }}" alt="No Image" width="50">
+        @endif
+    </div>
     <div class="form-group">
         <label for="judul">Judul Buku :</label>
         <input type="text" name="judul_buku" id="judul" class="form-control" value="{{ old('judul_buku', $perpustakaan->judul_buku) }}">

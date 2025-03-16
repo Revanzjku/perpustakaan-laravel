@@ -38,7 +38,16 @@ class BukuController extends Controller
     public function store(BukuRequest $request)
     {
         //
-        $buku = Buku::create($request->all());
+        $input = $request->all();
+
+        if ($request->hasFile('cover')) {
+            $cover = $request->file('cover');
+            $namaCover = time() . '.' . $cover->getClientOriginalExtension();
+            $cover->move(public_path('images'), $namaCover);
+            $input['cover'] = $namaCover;
+        }
+
+        $buku = Buku::create($input);
 
         Aktivitas::create([
             'deskripsi' => "Buku baru $buku->judul_buku telah ditambahkan."
@@ -67,7 +76,18 @@ class BukuController extends Controller
         //
         $perpustakaan = Buku::findOrFail($id);
         $namaBuku = $perpustakaan->judul_buku;
-        $perpustakaan->update($request->all());
+
+        $input = $request->all();
+        if ($request->hasFile('cover')) {
+            $cover = $request->file('cover');
+            $namaCover = time() . '.' . $cover->getClientOriginalExtension();
+            $cover->move(public_path('images'), $namaCover);
+            $input['cover'] = $namaCover;
+        } else {
+            $input['cover'] = $perpustakaan->cover;
+        }
+
+        $perpustakaan->update($input);
 
         Aktivitas::create([
             'deskripsi' => "Data buku $namaBuku telah diubah."
@@ -86,10 +106,10 @@ class BukuController extends Controller
         $perpustakaan->delete();
 
         Aktivitas::create([
-            'deskripsi' => "Buku $perpustakaan->judul_buku telah dihapus."
+            'deskripsi' => "Buku $perpustakaan->judul_buku telah masuk ke tempat sampah."
         ]);
 
-        return redirect()->route('buku.index')->with('success', 'Data buku berhasil dihapus.');
+        return redirect()->route('buku.index')->with('success', 'Data buku berhasil dihapus, ke tempat sampah.');
     }
 
     public function trash()
@@ -104,6 +124,10 @@ class BukuController extends Controller
         $buku = Buku::withTrashed()->findOrFail($id);
         $buku->restore();
 
+        Aktivitas::create([
+            'deskripsi' => "Buku $buku->judul_buku telah dikembalikan."
+        ]);
+
         return redirect()->route('buku.index')->with('success', 'Buku berhasil dikembalikan.');
     }
 
@@ -111,6 +135,10 @@ class BukuController extends Controller
     {
         $buku = Buku::withTrashed()->findOrFail($id);
         $buku->forceDelete();
+
+        Aktivitas::create([
+            'deskripsi' => "Buku $buku->judul_buku telah dihapus permanen."
+        ]);
 
         return redirect()->route('buku.index')->with('success', 'Buku berhasil dihapus secara permanen.');
     }

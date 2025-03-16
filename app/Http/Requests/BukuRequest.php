@@ -23,6 +23,7 @@ class BukuRequest extends FormRequest
     {
         return [
             //
+            'cover' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000',
             'judul_buku' => 'required|string|max:255',
             'pengarang_buku' => 'required|string|max:255',
             'penerbit_buku' => 'required|string|max:255',
@@ -35,6 +36,9 @@ class BukuRequest extends FormRequest
     public function messages()
     {
         return [
+            'cover.image' => 'Cover buku harus berupa gambar.',
+            'cover.mimes' => 'Cover buku harus berformat jpeg, png, jpg, gif, atau svg.',
+            'cover.max' => 'Ukuran cover buku maksimal 10 MB.',
             'judul_buku.required' => 'Judul buku wajib diisi.',
             'pengarang_buku.required' => 'Pengarang buku wajib diisi.',
             'penerbit_buku.required' => 'Penerbit buku wajib diisi.',
